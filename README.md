@@ -2,17 +2,47 @@
 This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
 
   1. The FAQs for the most critical services, included in the recommended reading list below
-  2. Tutorials Dojo's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a> in https://medium.com/
-  3. javinpaul's <a href="https://medium.com/javarevisited/how-to-prepare-for-aws-solution-architect-associate-certification-saa-c01-saa-c02-exam-in-2021-a6e7e7e771fc">How to Prepare for AWS Solution Architect Associate Certification (SAA-C01 & SAA-C02) Exam in 2022</a> from Udemy
-  4. Andrew Brown's youtube video <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020</a> from freeCodeCamp.org
+  2. Jayendra's Cloud Certification Blog <a href="https://jayendrapatil.com/aws-certified-solutions-architect-associate-saa-c03-exam-learning-path/">AWS Certified Solutions Architect – Associate SAA-C03 Exam Learning Path</a>
+  3. javinpaul's <a href="https://medium.com/javarevisited/how-to-prepare-for-aws-solution-architect-associate-certification-saa-c01-saa-c02-exam-in-2021-a6e7e7e771fc">How to Prepare for AWS Solution Architect Associate Certification (SAA-C01 & SAA-C02) Exam in 2022</a> in https://medium.com/
+  4. Morgan Willis' <a href="https://www.coursera.org/learn/aws-certified-solutions-architect-associate?irclickid=1BazRfWUrxyITZmWd6S8k3lLUkA038WayUWzQs0&irgwc=1&utm_medium=partners&utm_source=impact&utm_campaign=3308782&utm_content=b2c">Exam Prep: AWS Certified Solutions Architect - Associate</a> in coursera
+  5. Tutorials Dojo's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a> from Udemy
+  6. Andrew Brown's youtube video <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020</a> from freeCodeCamp.org
 
 *Notes*:
 If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up with the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">reddit/AWSCertifications</a> as you will find relevant exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. Finally, Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the content.
+
+###Top Free AWS Solution Architect Associate Practice Exams and Dumps###
+
+Without wasting any more of your time, here is my list of 5 free AWS Certified Solutions Architect Associate (SAA-C01, SAA-C02, SAA-C03) Practice tests, sample questions, exam dumps, and Mock exams or online simulators.
+
+These will not only help you to prepare better but also give you an idea about your strong and weak areas before the real exam. You can then focus on those topics to remove those weaknesses.
+
+They are also an excellent learning resource because you are more involved when you try to solve a problem and even when you fail to solve a problem, you learn a lot by looking at the solution and where and what you missed.
+
+1. <a href="https://click.linksynergy.com/deeplink?id=JVFxdTr9V80&mid=39197&murl=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Faws-certified-solutions-architect-associate-saa-c02%2F">[Practice Exams] AWS Certified Solutions Architect Associate</a> 
+
+2. Whizlab's <a href="https://shareasale.com/m-pr.cfm?merchantid=43514&userid=880419&productid=792775328&afftrack=">AWS Certified Solutions Architect Associate (SAA-C01) Free test</a> 
+
+3. <a href="https://www.simplilearn.com/aws-solutions-architect-exam-free-practice-test?utm_source=cj&utm_medium=8536219&utm_campaign=">Free AWS Solutions Architect Associate Practice Exam</a> 
+
+4. <a href="http://quiz.linuxacademy.com/">FREE AWS Certified Solution Architect Practice Quiz</a> from LinuxAcademy
+
+5. <a href="https://d1.awsstatic.com/training-and-certification/docs/AWS_Certified_Solutions_Architect_Associate_Sample_Questions.pdf">Official AWS Solutions Architect – Associate (SAA-C01) Sample questions</a> 
+
+6.  David Mayer's <a href="https://www.certification-questions.com/amazon-pdf/aws-certified-solutions-architect-associate-2018-pdf.html?affiliateCode=fcff36fd-557a-4713-abf6-973e9924770f&utm_source=Javin&utm_medium=affiliate&utm_campaign=affiliate">AWS Solution Architect Associate Dumps</a> 
 
 
 
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
+
+1. <a href="#compute Services">Compute Services</a>
+
+1. <a href="#storage Services">Storage Services</a>
+
+1. <a href="#database Services">Database Services</a>
+
+1. <a href="#network Services">Network Services</a>
 
 2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
 
@@ -82,8 +112,6 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 35. <a href="#miscellaneous">Miscellaneous</a>
 
-
-
 ## Introduction
 
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide.pdf">**The official AWS Certified Solutions Architect - Associate (SAA-C03) Exam Guide**</a>
@@ -91,8 +119,6 @@ If at any point you find yourself feeling uncertain of your progress and in need
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
 
 ### Exam Content Breakdown:
-![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
-
 https://www.whizlabs.com/blog/wp-content/uploads/2020/04/AWS-CSAA-Objectives-comparison-1-scaled.webp
 
 *Domain 1: Design Secure Architectures*
@@ -137,33 +163,50 @@ You can cover a lot of ground by skimming over what you already know or what you
 
   1. <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/wellarchitected-framework.pdf">AWS Well-Architected Framework</a>
 
-  2. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
+  2. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
 
-  3. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
+  3. <a href="https://aws.amazon.com/faqs/">Amazon FAQs</a>
 
-  4. <a href="https://aws.amazon.com/ec2/autoscaling/faqs/"> Amazon EC2 Auto Scaling FAQs </a>
+  4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
 
-  5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
+  5. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
 
-  6. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
+  6. <a href="https://aws.amazon.com/ec2/autoscaling/faqs/"> Amazon EC2 Auto Scaling FAQs </a>
 
-  7. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a> 
+  7. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
 
-  8. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
+  8. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-  9. <a href="https://aws.amazon.com/efs/faq/"> Amazon EFS FAQs</a>
+  9. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a> 
 
-  10. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
+  10. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
-  11. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
+  11. <a href="https://aws.amazon.com/efs/faq/"> Amazon EFS FAQs</a>
 
-  12. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
+  12. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
 
-  13. <a href="https://aws.amazon.com/fsx/windows/faqs/">Amazon FSx for Windows File Server FAQs</a>
+  13. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
 
-  14. <a href="https://aws.amazon.com/fsx/lustre/faqs/">Amazon FSx for Lustre FAQs</a>
+  14. <a href="https://aws.amazon.com/fsx/windows/faqs/">Amazon FSx for Windows File Server FAQs</a>
+
+  15. <a href="https://aws.amazon.com/fsx/lustre/faqs/">Amazon FSx for Lustre FAQs</a>
   
-  15. <a href="https://aws.amazon.com/organizations/faqs/">AWS Organizations FAQs</a>
+  16. <a href="https://aws.amazon.com/organizations/faqs/">AWS Organizations FAQs</a>
+
+## Compute Services
+
+## Storage Services
+
+### Simple Storage Service (S3)
+### Glacier
+### ClodFront
+### Elastic Block Store (EBS)
+### Storage Gateway
+
+## Database Services
+
+## Network Services
+
 
 ## Identity Access Management (IAM)
 
