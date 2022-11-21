@@ -36,13 +36,13 @@ They are also an excellent learning resource because you are more involved when 
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
 
-1. <a href="#compute Services">Compute Services</a>
+1. <a href="#compute-services">Compute Services</a>
 
-1. <a href="#storage Services">Storage Services</a>
+1. <a href="#storage-services">Storage Services</a>
 
-1. <a href="#database Services">Database Services</a>
+1. <a href="#database-services">Database Services</a>
 
-1. <a href="#network Services">Network Services</a>
+1. <a href="#network-services">Network Services</a>
 
 2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
 
