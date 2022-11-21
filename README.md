@@ -1,14 +1,13 @@
-# AWS SAA-C02 Study Guide
+# AWS SAA-C03 Study Guide
 This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
 
-  1. Stephane Maarek's <a href="https://links.datacumulus.com/aws-certified-sa-associate-coupon">Ultimate AWS Certified Solutions Architect Associate 2021 course</a> (permanent discount available through this link) or A Cloud Guru's <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect Associate SAA-C02 course</a>
-  2. The FAQs for the most critical services, included in the recommended reading list below
-  3. Tutorials Dojo's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a>
-  4. Andrew Brown's <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020 (PASS THE EXAM!) | Ad-Free Course
-</a> 
+  1. The FAQs for the most critical services, included in the recommended reading list below
+  2. Tutorials Dojo's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a> in https://medium.com/
+  3. javinpaul's <a href="https://medium.com/javarevisited/how-to-prepare-for-aws-solution-architect-associate-certification-saa-c01-saa-c02-exam-in-2021-a6e7e7e771fc">How to Prepare for AWS Solution Architect Associate Certification (SAA-C01 & SAA-C02) Exam in 2022</a> from Udemy
+  4. Andrew Brown's youtube video <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020</a> from freeCodeCamp.org
 
 *Notes*:
-If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up with the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">r/AWSCertifications</a> as you will find relevant exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. Finally, Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the content.
+If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up with the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">reddit/AWSCertifications</a> as you will find relevant exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. Finally, Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the content.
 
 
 
@@ -87,51 +86,50 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 ## Introduction
 
+<a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate_Exam-Guide.pdf">**The official AWS Certified Solutions Architect - Associate (SAA-C03) Exam Guide**</a>
+
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
 
 ### Exam Content Breakdown:
 ![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
 
-*Domain 1: Design Resilient Architectures*
+https://www.whizlabs.com/blog/wp-content/uploads/2020/04/AWS-CSAA-Objectives-comparison-1-scaled.webp
 
-  1.1 - Design a multi-tier architecture solution
+*Domain 1: Design Secure Architectures*
 
-  1.2 - Design highly available and/or fault-tolerant architectures
+  1.1 - Design secure access to AWS resources.
 
-  1.3 - Design decoupling mechanisms using AWS services
+  1.2 - Design secure workloads and applications.
 
-  1.4 - Choose appropriate resilient storage
+  1.3 - Determine appropriate data security controls.
 
+*Domain 2: Design Resilient Architectures*
 
-*Domain 2: Design High-Performing Architectures*
+  2.1 - Design scalable and loosely coupled architectures.
 
-  2.1 - Identify elastic and scalable **compute** solutions for a workload
+  2.2 - Design highly available and/or fault-tolerant architectures.
 
-  2.2 - Select high-performing and scalable **storage** solutions for a workload
+*Domain 3: Design High-Performing Architectures*
 
-  2.3 - Select high-performing **networking** solutions for a workload
+  3.1 - Determine high-performing and/or scalable **storage** solutions.
 
-  2.4 - Choose high-performing **database** solutions for a workload
+  3.2 - Design high-performing and elastic **compute** solutions
 
+  3.3 - Determine high-performing **database** solutions.
 
-*Domain 3: Design Secure Applications and Architectures*
+  3.4 - Determine high-performing and/or scalable **network** architectures.
 
-  3.1 - Design secure access to AWS resources
-
-  3.2 - Design secure application tiers
-
-  3.3 - Select appropriate data security options
-
+  3.5 - Determine high-performing data **ingestion** and **transformation** solutions.
 
 *Domain 4: Design Cost-Optimized Architectures*
 
-  4.1 - Identify cost-effective **storage** solutions
+  4.1 - Design cost-optimized **storage** solutions.
 
-  4.2 - Identify cost-effective **compute** and **database** services
+  4.2 - Design cost-optimized **compute** solutions.
 
-  4.3 - Design cost-optimized **network** architectures
+  4.3 - Design cost-optimized **database** solutions.
 
-
+  4.4 - Design cost-optimized **network** architectures.
 
 ### Recommended Reading:
 
@@ -139,27 +137,27 @@ You can cover a lot of ground by skimming over what you already know or what you
 
   1. <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/wellarchitected-framework.pdf">AWS Well-Architected Framework</a>
 
-  2. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
+  2. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
 
   3. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
 
-  4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
+  4. <a href="https://aws.amazon.com/ec2/autoscaling/faqs/"> Amazon EC2 Auto Scaling FAQs </a>
 
-  5. <a href="https://aws.amazon.com/ec2/autoscaling/faqs/"> Amazon EC2 Auto Scaling FAQs </a>
+  5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
 
-  6. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
+  6. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-  7. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
+  7. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a> 
 
-  8. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a> 
-  
-  9. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
+  8. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
-  10. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
+  9. <a href="https://aws.amazon.com/efs/faq/"> Amazon EFS FAQs</a>
 
-  11. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
+  10. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
 
-  12. <a href="https://aws.amazon.com/efs/faq/"> Amazon EFS FAQs</a>
+  11. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
+
+  12. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
 
   13. <a href="https://aws.amazon.com/fsx/windows/faqs/">Amazon FSx for Windows File Server FAQs</a>
 
