@@ -32,31 +32,48 @@ They are also an excellent learning resource because you are more involved when 
 6.  David Mayer's <a href="https://www.certification-questions.com/amazon-pdf/aws-certified-solutions-architect-associate-2018-pdf.html?affiliateCode=fcff36fd-557a-4713-abf6-973e9924770f&utm_source=Javin&utm_medium=affiliate&utm_campaign=affiliate">AWS Solution Architect Associate Dumps</a> 
 
 
-
 ## Table of Contents
 1. <a href="#introduction">Introduction</a>
 
-1. <a href="#compute-services">Compute Services</a>
+2. <a href="#compute-services">Compute Services</a>
 
-1. <a href="#storage-services">Storage Services</a>
+3. <a href="#storage-services">Storage Services</a>
 
-1. <a href="#database-services">Database Services</a>
+4. <a href="#simple-storage-service-s3">Simple Storage Service (S3)</a>
 
-1. <a href="#network-services">Network Services</a>
+5. <a href="#elastic-file-system-efs">Elastic File System (EFS)</a>
 
-2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
+6. <a href="#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
 
-3. <a href="#simple-storage-service-s3">Simple Storage Service (S3)</a>
+7. <a href="#storage-gateway">Storage Gateway</a>
+
+8. <a href="#snowball">Snowball</a>
+
+4. <a href="#database-services">Database Services</a>
+
+31. <a href="#dynamodb">DynamoDB</a>
+
+32. <a href="#redshift">Redshift</a>
+
+33. <a href="#elasticache">ElastiCache</a>
+
+5. <a href="#network-services">Network Services</a>
+
+10. <a href="#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
+
+11. <a href="#elastic-load-balancers-elb">Elastic Load Balancers (ELB)</a>
+
+12. <a href="#auto-scaling">Auto Scaling</a>
+
+13. <a href="#cloudformation">ElasticBeanstalk</a>
 
 4. <a href="#cloudfront">CloudFront</a>
 
-5. <a href="#snowball">Snowball</a>
+30. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
 
-6. <a href="#storage-gateway">Storage Gateway</a>
+25. <a href="#virtual-private-cloud-vpc"> Virtual Private Cloud (VPC)</a>
 
-7. <a href="#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
-
-8. <a href="#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
+2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
 
 9. <a href="#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
 
@@ -68,29 +85,13 @@ They are also an excellent learning resource because you are more involved when 
 
 13. <a href="#cloudtrail">CloudTrail</a>
 
-14. <a href="#elastic-file-system-efs">Elastic File System (EFS)</a>
-
 15. <a href="#amazon-fsx-for-windows">Amazon FSx for Windows</a>
 
 16. <a href="#amazon-fsx-for-lustre">Amazon FSx for Lustre</a>
 
-17. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
-
 18. <a href="#aurora">Aurora</a>
 
-19. <a href="#dynamodb">DynamoDB</a>
-
-20. <a href="#redshift">Redshift</a>
-
-21. <a href="#elasticache">ElastiCache</a>
-
 22. <a href="#route53">Route53</a>
-
-23. <a href="#elastic-load-balancers-elb">Elastic Load Balancers (ELB)</a>
-
-24. <a href="#auto-scaling">Auto Scaling</a>
-
-25. <a href="#virtual-private-cloud-vpc"> Virtual Private Cloud (VPC)</a>
 
 26. <a href="#simple-queuing-service-sqs"> Simple Queuing Service (SQS)</a>
 
@@ -105,8 +106,6 @@ They are also an excellent learning resource because you are more involved when 
 31. <a href="#api-gateway"> API Gateway </a>
 
 32. <a href="#cloudformation">CloudFormation </a>
-
-33. <a href="#cloudformation">ElasticBeanstalk</a>
 
 34. <a href="#aws-organizations">AWS Organizations</a>
 
@@ -197,63 +196,12 @@ You can cover a lot of ground by skimming over what you already know or what you
 
 ## Storage Services
 
-### Simple Storage Service (S3)
-### Glacier
-### ClodFront
-### Elastic Block Store (EBS)
-### Storage Gateway
-
-## Database Services
-
-## Network Services
-
-
-## Identity Access Management (IAM)
-
-### IAM Simplified:
-
-IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organization. 
-It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
-
-### IAM Entities:
-
-**Users** - any individual end user such as an employee, system architect, CTO, etc.
-
-**Groups** - any collection of similar people with shared permissions such as system administrators, HR employees, finance teams, etc. Each user within their specified group will inherit the permissions set for the group.
-
-**Roles** - any software service that needs to be granted permissions to do its job, e.g- AWS Lambda needing write permissions to S3 or a fleet of EC2 instances needing read permissions from a RDS MySQL database.
-
-**Policies** - the documented rule sets that are applied to grant or limit access. In order for users, groups, or roles to properly set permissions, they use policies. Policies are written in JSON and you can either use custom policies for your specific needs or use the default policies set by AWS.
-
-![Screen Shot 2020-06-06 at 10 49 48 PM](https://user-images.githubusercontent.com/13093517/83959193-11533980-a848-11ea-9d03-d8133e0aaa86.png)
-
-IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its necessary function.
-
-### IAM Key Details:
-
-- IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
-
-- The root account with complete admin access is the account used to sign up for AWS. Therefore, the email address used to create the AWS account for use should probably be the official company email address.
-
-- New users have no permissions when their accounts are first created. This is a secure way of delegating access as permissions must be intentionally granted.
-
-- When joining the AWS ecosystem for the first time, new users are supplied an access key ID and a secret access key ID when you grant them programmatic access. These are created just once specifically for the new user to join, so if they are lost simply generate a new access key ID and a new secret access key ID. Access keys are only used for the AWS CLI and SDK so you cannot use them to access the console.
-
-- When creating your AWS account, you may have an existing identity provider internal to your company that offers Single Sign On (SSO). If this is the case, it is useful, efficient, and entirely possible to reuse your existing identities on AWS. To do this, you let an IAM role be assumed by one of the Active Directories. This is because the IAM ID Federation feature allows an external service to have the ability to assume an IAM role.
-
-- IAM Roles can be assigned to a service, such as an EC2 instance, prior to its first use/creation or after its been in used/created. You can change permissions as many times as you need. This can all be done by using both the AWS console and the AWS command line tools.
-
-- You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
-
-- With IAM Policies, you can easily add tags that help define which resources are accessible by whom. These tags are then used to control access via a particular IAM policy. For example, production and development EC2 instances might be tagged as such. This would ensure that people who should only be able to access development instances cannot access production instances.  
-
-### Priority Levels in IAM:
-- **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
-
-- **Explicit Allow**: Allows access to a particular resource so long as there is not an associated Explicit Deny.
-
-- **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
-
+*Simple Storage Service (S3)*
+*Glacier*
+*ClodFront*
+*Elastic Block Store (EBS)*
+*Storage Gateway*
+*Snowball*
 
 ## Simple Storage Service (S3)
 
@@ -269,7 +217,6 @@ S3 provides developers and IT teams with secure, durable, and highly-scalable ob
 This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
 
 ![Screen Shot 2020-06-05 at 3 34 57 PM](https://user-images.githubusercontent.com/13093517/83915925-352c5780-a742-11ea-975b-53d4e5d07e7c.png)
-
 
 Data uploaded into S3 is spread across multiple files and facilities. The files uploaded into S3 have an upper-bound of 5TB per file and the number of files that can be uploaded is virtually limitless. S3 buckets, which contain all files, are named in a universal namespace so uniqueness is required. All successful uploads will return an HTTP 200 response.
 
@@ -439,6 +386,136 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with significantly less data.
 - You can also use S3 Select for Glacier.
 
+## Elastic Block Store (EBS)
+
+### EBS Simplified:
+An Amazon EBS volume is a durable, block-level storage device that you can attach to a single EC2 instance. You can think of EBS as a cloud-based virtual hard disk. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application. You can also use them for throughput-intensive applications that perform continuous disk scans.
+
+### EBS Key Details:
+- EBS volumes persist independently from the running life of an EC2 instance.
+- Each EBS volume is automatically replicated within its Availability Zone to protect from both component failure and disaster recovery (similar to Standard S3).
+- There are five different types of EBS Storage:
+  - General Purpose (SSD)
+  - Provisioned IOPS (SSD, built for speed)
+  - Throughput Optimized Hard Disk Drive (magnetic, built for larger data loads)
+  - Cold Hard Disk Drive (magnetic, built for less frequently accessed workloads)
+  - Magnetic
+- EBS Volumes offer 99.999% SLA.
+- Wherever your EC2 instance is, your volume for it is going to be in the same availability zone
+- An EBS volume can only be attached to one EC2 instance at a time.
+- After you create a volume, you can attach it to any EC2 instance in the same availability zone.
+- Amazon EBS provides the ability to create snapshots (backups) of any EBS volume and write a copy of the data in the volume to S3, where it is stored redundantly in multiple Availability Zones
+- An EBS snapshot reflects the contents of the volume during a concrete instant in time.
+- An image (AMI) is the same thing, but includes an operating system and a boot loader so it can be used to boot an instance. 
+- AMIs can also be thought of as pre-baked, launchable servers. AMIs are always used when launching an instance. 
+- When you provision an EC2 instance, an AMI is actually the first thing you are asked to specify. You can choose a pre-made AMI or choose your own made from an EBS snapshot.
+- You can also use the following criteria to help pick your AMI:
+  - Operating System
+  - Architecture (32-bit or 64-bit)
+  - Region
+  - Launch permissions
+  - Root Device Storage (more in the relevant section below)
+- You can copy AMIs into entirely new regions.
+- When copying AMIs to new regions, Amazon won’t copy launch permissions, user-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI. You must ensure those details are properly set for the instances in the new region.
+- You can change EBS volumes on the fly, including the size and storage type
+
+### SSD vs. HDD:
+- SSD-backed volumes are built for transactional workloads involving frequent read/write operations, where the dominant performance attribute is IOPS. **Rule of thumb**: Will your workload be IOPS heavy? Plan for SSD.
+- HDD-backed volumes are built for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. **Rule of thumb**: Will your workload be throughput heavy? Plan for HDD.
+
+![hdd_vs_ssd](https://user-images.githubusercontent.com/13093517/84944872-76165b80-b0b4-11ea-819c-a93deb999ea2.png)
+
+
+### EBS Snapshots:
+- EBS Snapshots are point in time copies of volumes. You can think of Snapshots as photographs of the disk’s current state and the state of everything within it.
+- A snapshot is constrained to the region where it was created.
+- Snapshots only capture the state of change from when the last snapshot was taken. This is what is recorded in each new snapshot, not the entire state of the server.
+- Because of this, it may take some time for your first snapshot to be created. This is because the very first snapshot's change of state is the entire new volume. Only afterwards will the delta be captured because there will then be something previous to compare against. 
+- EBS snapshots occur asynchronously which means that a volume can be used as normal while a snapshot is taking place.
+- When creating a snapshot for a future root device, it is considered best practices to stop the running instance where the original device is before taking the snapshot.
+- The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot.
+- When creating an image from a snapshot, if you want to deploy a different volume type for the new image (e.g. General Purpose SSD -> Throughput Optimized HDD) then you must make sure that the virtualization for the new image is hardware-assisted.
+- A short summary for creating copies of EC2 instances: Old instance -> Snapshot -> Image (AMI) -> New instance
+- You cannot delete a snapshot of an EBS Volume that is used as the root device of a registered AMI. If the original snapshot was deleted, then the AMI would not be able to use it as the basis to create new instances. For this reason, AWS protects you from accidentally deleting the EBS Snapshot, since it could be critical to your systems. To delete an EBS Snapshot attached to a registered AMI, first remove the AMI, then the snapshot can be deleted.
+
+
+### EBS Root Device Storage:
+- All AMI root volumes (where the EC2's OS is installed) are of two types: EBS-backed or Instance Store-backed
+- When you delete an EC2 instance that was using an Instance Store-backed root volume, your root volume will also be deleted. Any additional or secondary volumes will persist however.
+- If you use an EBS-backed root volume, the root volume will not be terminated with its EC2 instance when the instance is brought offline. EBS-backed volumes are not temporary storage devices like Instance Store-backed volumes.
+- EBS-backed Volumes are launched from an AWS EBS snapshot, as the name implies
+- Instance Store-backed Volumes are launched from an AWS S3 stored template. They are ephemeral, so be careful when shutting down an instance!
+- Secondary instance stores for an instance-store backed root device must be installed during the original provisioning of the server. You cannot add more after the fact. However, you can add EBS volumes to the same instance after the server's creation.
+- With these drawbacks of Instance Store volumes, why pick one? Because they have a very high IOPS rate. So while an Instance Store can't provide data persistence, it can provide much higher IOPS compared to network attached storage like EBS. 
+- Further, Instance stores are ideal for temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers.
+- When to use one over the other?
+  - Use EBS for DB data, critical logs, and application configs.
+  - Use instance storage for in-process data, noncritical logs, and transient application state.
+  - Use S3 for data shared between systems like input datasets and processed results, or for static data needed by each new system when launched.
+
+### EBS Encryption:
+- EBS encryption offers a straight-forward encryption solution for EBS resources that doesn't require you to build, maintain, and secure your own key management infrastructure.
+- It uses AWS Key Management Service (AWS KMS) customer master keys (CMK) when creating encrypted volumes and snapshots. 
+- You can encrypt both the root device and secondary volumes of an EC2 instance. When you create an encrypted EBS volume and attach it to a supported instance type, the following types of data are encrypted:
+  - Data at rest inside the volume
+  - All data moving between the volume and the instance
+  - All snapshots created from the volume
+  - All volumes created from those snapshots
+- EBS encrypts your volume with a data key using the AES-256 algorithm. 
+- Snapshots of encrypted volumes are naturally encrypted as well. Volumes restored from encrypted snapshots are also encrypted. You can only share unencrypted snapshots.
+- The old way of encrypting a root device was to create a snapshot of a provisioned EC2 instance. While making a copy of that snapshot, you then enabled encryption during the copy's creation. Finally, once the copy was encrypted, you then created an AMI from the encrypted copy and used to have an EC2 instance with encryption on the root device. Because of how complex this is, you can now simply encrypt root devices as part of the EC2 provisioning options.
+
+## Database Services
+
+## Network Services
+
+
+## Identity Access Management (IAM)
+
+### IAM Simplified:
+
+IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organization. 
+It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
+
+### IAM Entities:
+
+**Users** - any individual end user such as an employee, system architect, CTO, etc.
+
+**Groups** - any collection of similar people with shared permissions such as system administrators, HR employees, finance teams, etc. Each user within their specified group will inherit the permissions set for the group.
+
+**Roles** - any software service that needs to be granted permissions to do its job, e.g- AWS Lambda needing write permissions to S3 or a fleet of EC2 instances needing read permissions from a RDS MySQL database.
+
+**Policies** - the documented rule sets that are applied to grant or limit access. In order for users, groups, or roles to properly set permissions, they use policies. Policies are written in JSON and you can either use custom policies for your specific needs or use the default policies set by AWS.
+
+![Screen Shot 2020-06-06 at 10 49 48 PM](https://user-images.githubusercontent.com/13093517/83959193-11533980-a848-11ea-9d03-d8133e0aaa86.png)
+
+IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its necessary function.
+
+### IAM Key Details:
+
+- IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
+
+- The root account with complete admin access is the account used to sign up for AWS. Therefore, the email address used to create the AWS account for use should probably be the official company email address.
+
+- New users have no permissions when their accounts are first created. This is a secure way of delegating access as permissions must be intentionally granted.
+
+- When joining the AWS ecosystem for the first time, new users are supplied an access key ID and a secret access key ID when you grant them programmatic access. These are created just once specifically for the new user to join, so if they are lost simply generate a new access key ID and a new secret access key ID. Access keys are only used for the AWS CLI and SDK so you cannot use them to access the console.
+
+- When creating your AWS account, you may have an existing identity provider internal to your company that offers Single Sign On (SSO). If this is the case, it is useful, efficient, and entirely possible to reuse your existing identities on AWS. To do this, you let an IAM role be assumed by one of the Active Directories. This is because the IAM ID Federation feature allows an external service to have the ability to assume an IAM role.
+
+- IAM Roles can be assigned to a service, such as an EC2 instance, prior to its first use/creation or after its been in used/created. You can change permissions as many times as you need. This can all be done by using both the AWS console and the AWS command line tools.
+
+- You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
+
+- With IAM Policies, you can easily add tags that help define which resources are accessible by whom. These tags are then used to control access via a particular IAM policy. For example, production and development EC2 instances might be tagged as such. This would ensure that people who should only be able to access development instances cannot access production instances.  
+
+### Priority Levels in IAM:
+- **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
+
+- **Explicit Allow**: Allows access to a particular resource so long as there is not an associated Explicit Deny.
+
+- **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
+
 
 ## CloudFront
 
@@ -570,7 +647,6 @@ The following table highlights the many instance states that a VM can be in at a
 - You can encrypt your root device volume which is where you install the underlying OS. You can do this during creation time of the instance or with third-party tools like bit locker. Of course, additional or secondary EBS volumes are also encryptable as well.
 - By default, an EC2 instance with an attached AWS Elastic Block Store (EBS) root volume will be deleted together when the instance is terminated. However, any additional or secondary EBS volume that is also attached to the same instance will be preserved. This is because the root EBS volume is for OS installations and other low-level settings. This rule can be modified, but it is usually easier to boot a new instance with a fresh root device volume than make use of an old one.
 
-
 ### EC2 Placement Groups:
 -  Placement groups balance the tradeoff between risk tolerance and network performance when it comes to your fleet of EC2 instances. The more you care about risk, the more isolated you want your instances to be from each other. The more you care about performance, the more conjoined you want your instances to be with each other. 
 - There are three different types of EC2 placement groups:
@@ -590,86 +666,6 @@ The following table highlights the many instance states that a VM can be in at a
   
 - Each placement group name within your AWS must be unique
 - You can move an existing instance into a placement group provided that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
-
-## Elastic Block Store (EBS)
-
-### EBS Simplified:
-An Amazon EBS volume is a durable, block-level storage device that you can attach to a single EC2 instance. You can think of EBS as a cloud-based virtual hard disk. You can use EBS volumes as primary storage for data that requires frequent updates, such as the system drive for an instance or storage for a database application. You can also use them for throughput-intensive applications that perform continuous disk scans.
-
-### EBS Key Details:
-- EBS volumes persist independently from the running life of an EC2 instance.
-- Each EBS volume is automatically replicated within its Availability Zone to protect from both component failure and disaster recovery (similar to Standard S3).
-- There are five different types of EBS Storage:
-  - General Purpose (SSD)
-  - Provisioned IOPS (SSD, built for speed)
-  - Throughput Optimized Hard Disk Drive (magnetic, built for larger data loads)
-  - Cold Hard Disk Drive (magnetic, built for less frequently accessed workloads)
-  - Magnetic
-- EBS Volumes offer 99.999% SLA.
-- Wherever your EC2 instance is, your volume for it is going to be in the same availability zone
-- An EBS volume can only be attached to one EC2 instance at a time.
-- After you create a volume, you can attach it to any EC2 instance in the same availability zone.
-- Amazon EBS provides the ability to create snapshots (backups) of any EBS volume and write a copy of the data in the volume to S3, where it is stored redundantly in multiple Availability Zones
-- An EBS snapshot reflects the contents of the volume during a concrete instant in time.
-- An image (AMI) is the same thing, but includes an operating system and a boot loader so it can be used to boot an instance. 
-- AMIs can also be thought of as pre-baked, launchable servers. AMIs are always used when launching an instance. 
-- When you provision an EC2 instance, an AMI is actually the first thing you are asked to specify. You can choose a pre-made AMI or choose your own made from an EBS snapshot.
-- You can also use the following criteria to help pick your AMI:
-  - Operating System
-  - Architecture (32-bit or 64-bit)
-  - Region
-  - Launch permissions
-  - Root Device Storage (more in the relevant section below)
-- You can copy AMIs into entirely new regions.
-- When copying AMIs to new regions, Amazon won’t copy launch permissions, user-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI. You must ensure those details are properly set for the instances in the new region.
-- You can change EBS volumes on the fly, including the size and storage type
-
-### SSD vs. HDD:
-- SSD-backed volumes are built for transactional workloads involving frequent read/write operations, where the dominant performance attribute is IOPS. **Rule of thumb**: Will your workload be IOPS heavy? Plan for SSD.
-- HDD-backed volumes are built for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. **Rule of thumb**: Will your workload be throughput heavy? Plan for HDD.
-
-![hdd_vs_ssd](https://user-images.githubusercontent.com/13093517/84944872-76165b80-b0b4-11ea-819c-a93deb999ea2.png)
-
-
-### EBS Snapshots:
-- EBS Snapshots are point in time copies of volumes. You can think of Snapshots as photographs of the disk’s current state and the state of everything within it.
-- A snapshot is constrained to the region where it was created.
-- Snapshots only capture the state of change from when the last snapshot was taken. This is what is recorded in each new snapshot, not the entire state of the server.
-- Because of this, it may take some time for your first snapshot to be created. This is because the very first snapshot's change of state is the entire new volume. Only afterwards will the delta be captured because there will then be something previous to compare against. 
-- EBS snapshots occur asynchronously which means that a volume can be used as normal while a snapshot is taking place.
-- When creating a snapshot for a future root device, it is considered best practices to stop the running instance where the original device is before taking the snapshot.
-- The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot.
-- When creating an image from a snapshot, if you want to deploy a different volume type for the new image (e.g. General Purpose SSD -> Throughput Optimized HDD) then you must make sure that the virtualization for the new image is hardware-assisted.
-- A short summary for creating copies of EC2 instances: Old instance -> Snapshot -> Image (AMI) -> New instance
-- You cannot delete a snapshot of an EBS Volume that is used as the root device of a registered AMI. If the original snapshot was deleted, then the AMI would not be able to use it as the basis to create new instances. For this reason, AWS protects you from accidentally deleting the EBS Snapshot, since it could be critical to your systems. To delete an EBS Snapshot attached to a registered AMI, first remove the AMI, then the snapshot can be deleted.
-
-
-
-### EBS Root Device Storage:
-- All AMI root volumes (where the EC2's OS is installed) are of two types: EBS-backed or Instance Store-backed
-- When you delete an EC2 instance that was using an Instance Store-backed root volume, your root volume will also be deleted. Any additional or secondary volumes will persist however.
-- If you use an EBS-backed root volume, the root volume will not be terminated with its EC2 instance when the instance is brought offline. EBS-backed volumes are not temporary storage devices like Instance Store-backed volumes.
-- EBS-backed Volumes are launched from an AWS EBS snapshot, as the name implies
-- Instance Store-backed Volumes are launched from an AWS S3 stored template. They are ephemeral, so be careful when shutting down an instance!
-- Secondary instance stores for an instance-store backed root device must be installed during the original provisioning of the server. You cannot add more after the fact. However, you can add EBS volumes to the same instance after the server's creation.
-- With these drawbacks of Instance Store volumes, why pick one? Because they have a very high IOPS rate. So while an Instance Store can't provide data persistence, it can provide much higher IOPS compared to network attached storage like EBS. 
-- Further, Instance stores are ideal for temporary storage of information that changes frequently such as buffers, caches, scratch data, and other temporary content, or for data that is replicated across a fleet of instances, such as a load-balanced pool of web servers.
-- When to use one over the other?
-  - Use EBS for DB data, critical logs, and application configs.
-  - Use instance storage for in-process data, noncritical logs, and transient application state.
-  - Use S3 for data shared between systems like input datasets and processed results, or for static data needed by each new system when launched.
-
-### EBS Encryption:
-- EBS encryption offers a straight-forward encryption solution for EBS resources that doesn't require you to build, maintain, and secure your own key management infrastructure.
-- It uses AWS Key Management Service (AWS KMS) customer master keys (CMK) when creating encrypted volumes and snapshots. 
-- You can encrypt both the root device and secondary volumes of an EC2 instance. When you create an encrypted EBS volume and attach it to a supported instance type, the following types of data are encrypted:
-  - Data at rest inside the volume
-  - All data moving between the volume and the instance
-  - All snapshots created from the volume
-  - All volumes created from those snapshots
-- EBS encrypts your volume with a data key using the AES-256 algorithm. 
-- Snapshots of encrypted volumes are naturally encrypted as well. Volumes restored from encrypted snapshots are also encrypted. You can only share unencrypted snapshots.
-- The old way of encrypting a root device was to create a snapshot of a provisioned EC2 instance. While making a copy of that snapshot, you then enabled encryption during the copy's creation. Finally, once the copy was encrypted, you then created an AMI from the encrypted copy and used to have an EC2 instance with encryption on the root device. Because of how complex this is, you can now simply encrypt root devices as part of the EC2 provisioning options.
 
 ## Elastic Network Interfaces (ENI)
 
