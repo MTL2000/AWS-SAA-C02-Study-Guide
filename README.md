@@ -196,17 +196,12 @@ You can cover a lot of ground by skimming over what you already know or what you
 
 ## Storage Services
 
-*Simple Storage Service (S3)*
-
-*Glacier*
-
-*ClodFront*
-
-*Elastic Block Store (EBS)*
-
-*Storage Gateway*
-
-*Snowball*
+- *Simple Storage Service (S3)*
+- *Glacier*
+- *ClodFront*
+- *Elastic Block Store (EBS)*
+- *Storage Gateway*
+- *Snowball*
 
 ## Simple Storage Service (S3)
 
