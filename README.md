@@ -288,6 +288,30 @@ The Expedited duration listed above could possibly be longer during rare situati
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
 
+### Amazon S3 Access Points:
+With S3 Access Points, customers can create unique access control policies for each access point to easily control access to shared datasets. Customers with shared data sets including data lakes, media archives, and user-generated content can easily scale access for hundreds of applications by creating individualized access points with names and permissions customized for each application. Any access point can be restricted to a Virtual Private Cloud (VPC) to firewall S3 data access within customers’ private networks, and AWS Service Control Policies can be used to ensure all access points are VPC restricted. S3 Access Points are available in all regions at no additional cost.
+
+### S3 Batch Operations:
+S3 Batch Operations can perform actions across billions of objects and petabytes of data with a single request. To perform work in S3 Batch Operations, you create a job. The job consists of the list of objects, the action to perform, and the set of parameters you specify for that type of operation. You can create and run multiple jobs at a time in S3 Batch Operations or use job priorities as needed to define the precedence of each job and ensures the most critical work happens first. S3 Batch Operations also manages retries, tracks progress, sends completion notifications, generates reports, and delivers events to AWS CloudTrail for all changes made and tasks executed. 
+
+### Amazon S3 Block Public Access:
+S3 Block Public Access provides controls across an entire AWS Account or at the individual S3 bucket level to ensure that objects never have public access, now and in the future.
+
+S3 Block Public Access settings override S3 permissions that allow public access, making it easy for the account administrator to set up a centralized control to prevent variation in security configuration regardless of how an object is added or a bucket is created.
+
+In addition to the S3 console, you can enable S3 Block Public Access via the AWS CLI, SDKs, or REST APIs. 
+
+### Amazon S3 Object Lambda:
+With S3 Object Lambda, you can add your own code to S3 GET, HEAD, and LIST requests to modify and process data as it is returned to an application. You can use custom code to modify the data returned by S3 GET requests to filter rows, dynamically resize images, redact confidential data, and much more. You can also use S3 Object Lambda to modify the output of S3 LIST requests to create a custom view of objects in a bucket and S3 HEAD requests to modify object metadata like object name and size.
+
+### S3 Cross Region Replication:
+- Cross region replication only work if versioning is enabled.
+- When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
+- When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
+- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
+- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
+- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
+
 ### S3 Encryption:
 S3 data can be encrypted both in transit and at rest.
 
@@ -312,14 +336,6 @@ You can encrypt on the AWS supported server-side in the following ways:
 - Automates the moving of objects between the different storage tiers.
 - Can be used in conjunction with versioning.
 - Lifecycle rules can be applied to both current and previous versions of an object.
-
-### S3 Cross Region Replication:
-- Cross region replication only work if versioning is enabled.
-- When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
-- When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
-- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
-- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
-- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
 
 ### S3 Transfer Acceleration:
 - Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin.
@@ -385,6 +401,10 @@ The Amazon S3 notification feature enables you to receive and send notifications
   - With S3 Select, you can use a simple SQL expression to return only the data from the store you’re interested in, instead of retrieving the entire object. 
 - By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with significantly less data.
 - You can also use S3 Select for Glacier.
+
+### Developing with Amazon S3:
+- <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/index.html">AWS CLI Command Reference - s3api</a>
+- <a href="https://sdk.amazonaws.com/java/api/latest/">AWS SDK for Java API Reference</a>
 
 ## Elastic Block Store (EBS)
 
