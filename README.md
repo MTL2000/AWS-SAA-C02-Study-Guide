@@ -817,7 +817,6 @@ EC2 spins up resizable server instances that can scale up and down quickly. An i
 - **Convertible Reserved Instances** are instances that are discounted at 54% off of On-Demand instances, but you can also modify the instance type at any point. For example, you suspect that after a few months your VM might need to change from general purpose to memory optimized, but you aren't sure just yet. So if you think that in the future you might need to change your VM type or upgrade your VMs capacity, choose Convertible Reserved Instances. There is no downgrading instance type with this option though.
 - **Scheduled Reserved Instances** are reserved according to a specified timeline that you set. For example, you might use Scheduled Reserved Instances if you run education software that only needs to be available during school hours. This option allows you to better match your needed capacity with a recurring schedule so that you can save money.
 
-
 ### EC2 Instance Lifecycle:
 The following table highlights the many instance states that a VM can be in at a given time. 
 
@@ -859,6 +858,16 @@ The following table highlights the many instance states that a VM can be in at a
 - Each placement group name within your AWS must be unique
 - You can move an existing instance into a placement group provided that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
 
+## ElasticBeanstalk
+
+### ElasticBeanstalk Simplified:
+ElasticBeanstalk is another way to script out your provisioning process by deploying existing applications to the cloud. ElasticBeanstalk is aimed toward developers who know very little about the cloud and want the simplest way of deploying their code.
+
+### ElasticBeanstalk Key Details:
+- Just upload your application and ElasticBeanstalk will take care of the underlying infrastructure.
+- ElasticBeanstalk has capacity provisioning, meaning you can use it with autoscaling from the get-go.
+ElasticBeanstalk applies updates to your application by having a duplicate ready with the already updated version. This duplicate is then swapped with the original. This is done as a preventative measure in case your updated application fails. If the app does fail, ElasticBeanstalk will switch back to the original copy with the older version and there will be no downtime experienced by the users who are using your application. 
+- You can use ElasticBeanstalk to even host Docker as Elastic Beanstalk supports the deployment of web applications from containers. With Docker containers, you can define your own runtime environment, your own platform, programming language, and any application dependencies (such as package managers or tools) that aren't supported by other platforms. ElasticBeanstalk makes it easy to deploy Docker as Docker containers are already self-contained and include all the configuration information and software required to run. 
 
 ## Database Services
 
@@ -1644,18 +1653,6 @@ CloudFormation is an automated tool for provisioning entire cloud-based environm
 
 - For any Logical Resources in the stack, CloudFormation will make a corresponding Physical Resources in your AWS account. It is CloudFormation’s job to keep the logical and physical resources in sync.
 - A template can be updated and then used to update the same stack.
-
-
-## ElasticBeanstalk
-
-### ElasticBeanstalk Simplified:
-ElasticBeanstalk is another way to script out your provisioning process by deploying existing applications to the cloud. ElasticBeanstalk is aimed toward developers who know very little about the cloud and want the simplest way of deploying their code.
-
-### ElasticBeanstalk Key Details:
-- Just upload your application and ElasticBeanstalk will take care of the underlying infrastructure.
-- ElasticBeanstalk has capacity provisioning, meaning you can use it with autoscaling from the get-go.
-ElasticBeanstalk applies updates to your application by having a duplicate ready with the already updated version. This duplicate is then swapped with the original. This is done as a preventative measure in case your updated application fails. If the app does fail, ElasticBeanstalk will switch back to the original copy with the older version and there will be no downtime experienced by the users who are using your application. 
-- You can use ElasticBeanstalk to even host Docker as Elastic Beanstalk supports the deployment of web applications from containers. With Docker containers, you can define your own runtime environment, your own platform, programming language, and any application dependencies (such as package managers or tools) that aren't supported by other platforms. ElasticBeanstalk makes it easy to deploy Docker as Docker containers are already self-contained and include all the configuration information and software required to run. 
 
 ## AWS Organizations
 
