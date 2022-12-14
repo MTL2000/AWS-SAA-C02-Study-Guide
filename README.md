@@ -45,17 +45,25 @@ They are also an excellent learning resource because you are more involved when 
 
 5. <a href="#elastic-file-system-efs">Elastic File System (EFS)</a>
 
-7. <a href="#storage-gateway">Storage Gateway</a>
+6. <a href="#amazon-fsx-for-windows">Amazon FSx for Windows</a>
 
-8. <a href="#snowball">Snowball</a>
+7. <a href="#amazon-fsx-for-lustre">Amazon FSx for Lustre</a>
 
-9. <a href="#virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</a>
+8. <a href="#storage-gateway">Storage Gateway</a>
 
-10. <a href="#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
+9. <a href="#snowball">Snowball</a>
 
-11. <a href="#database-services">Database Services</a>
+10. <a href="#virtual-private-cloud-vpc">Virtual Private Cloud (VPC)</a>
 
-12. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
+11. <a href="#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
+
+12. <a href="#cloudformation">ElasticBeanstalk</a>
+
+13. <a href="#security-groups">Security Groups</a>
+
+14. <a href="#database-services">Database Services</a>
+
+15. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
 
 11. <a href="#dynamodb">DynamoDB</a>
 
@@ -69,25 +77,17 @@ They are also an excellent learning resource because you are more involved when 
 
 12. <a href="#auto-scaling">Auto Scaling</a>
 
-13. <a href="#cloudformation">ElasticBeanstalk</a>
-
 4. <a href="#cloudfront">CloudFront</a>
 
 2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
 
 9. <a href="#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
 
-10. <a href="#security-groups">Security Groups</a>
-
 11. <a href="#web-application-firewall-waf">Web Application Firewall (WAF)</a>
 
 12. <a href="#cloudwatch">CloudWatch</a>
 
 13. <a href="#cloudtrail">CloudTrail</a>
-
-15. <a href="#amazon-fsx-for-windows">Amazon FSx for Windows</a>
-
-16. <a href="#amazon-fsx-for-lustre">Amazon FSx for Lustre</a>
 
 18. <a href="#aurora">Aurora</a>
 
@@ -457,7 +457,6 @@ An Amazon EBS volume is a durable, block-level storage device that you can attac
 - When creating an image from a snapshot, if you want to deploy a different volume type for the new image (e.g. General Purpose SSD -> Throughput Optimized HDD) then you must make sure that the virtualization for the new image is hardware-assisted.
 - A short summary for creating copies of EC2 instances: Old instance -> Snapshot -> Image (AMI) -> New instance
 - You cannot delete a snapshot of an EBS Volume that is used as the root device of a registered AMI. If the original snapshot was deleted, then the AMI would not be able to use it as the basis to create new instances. For this reason, AWS protects you from accidentally deleting the EBS Snapshot, since it could be critical to your systems. To delete an EBS Snapshot attached to a registered AMI, first remove the AMI, then the snapshot can be deleted.
-
 
 ### EBS Root Device Storage:
 - All AMI root volumes (where the EC2's OS is installed) are of two types: EBS-backed or Instance Store-backed
