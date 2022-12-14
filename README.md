@@ -61,9 +61,13 @@ They are also an excellent learning resource because you are more involved when 
 
 13. <a href="#security-groups">Security Groups</a>
 
-14. <a href="#database-services">Database Services</a>
+14. <a href="#elastic-load-balancers-elb">Elastic Load Balancers (ELB)</a>
 
-15. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
+15. <a href="#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
+
+16. <a href="#database-services">Database Services</a>
+
+17. <a href="#relational-database-service-rds">Relational Database Service (RDS)</a>
 
 11. <a href="#dynamodb">DynamoDB</a>
 
@@ -73,15 +77,11 @@ They are also an excellent learning resource because you are more involved when 
 
 5. <a href="#network-services">Network Services</a>
 
-11. <a href="#elastic-load-balancers-elb">Elastic Load Balancers (ELB)</a>
-
 12. <a href="#auto-scaling">Auto Scaling</a>
 
 4. <a href="#cloudfront">CloudFront</a>
 
 2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
-
-9. <a href="#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
 
 11. <a href="#web-application-firewall-waf">Web Application Firewall (WAF)</a>
 
@@ -571,7 +571,6 @@ Snowball is a giant physical disk that is used for migrating high quantities of 
 - Snowball Edge is a specific type of Snowball that comes with both compute *and* storage capabilities via AWS Lambda and specific EC2 instance types. This means you can run code within your snowball while your data is en route to an Amazon data center. This enables support of local workloads in remote or offline locations and as a result, Snowball Edge does not need to be limited to a data transfer service. An interesting use case is with airliners. Planes sometimes fly with snowball edges onboard so they can store large amounts of flight data and compute necessary functions for the plane’s own systems. Snowball Edges can also be clustered locally for even better performance.
 - Snowmobile is an exabyte-scale data transfer solution. It is a data transport solution for 100 petabytes of data and is contained within a 45-foot shipping container hauled by a semi-truck. This massive transfer makes sense if you want to move your entire data center with years of data into the cloud.
 
-
 ## Virtual Private Cloud (VPC)
 
 ### VPC Simplified:
@@ -646,7 +645,6 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - If you are using NAT Gateway along with your NACL, you must ensure the availability of the NAT Gateway ephemeral port range within the rules of your NACL. Because NAT Gateway traffic can appear on any of range's ports for the duration of its connection, you must ensure that all possible ports are accounted for and open.
 - NACL can have a small impact on how EC2 instances in a private subnet will communicate with any service, including VPC Endpoints.
 
-
 ### NAT Instances vs. NAT Gateways:
 - Attaching an Internet Gateway to a VPC allows instances with public IPs to directly access the internet. NAT does a similar thing, however it is for instances that do not have a public IP. It serves as an intermediate step which allow private instances to first mask their own private IP as the NAT's public IP before accessing the internet.
 - You would want your private instances to access the internet so that they can have normal software updates. NAT prevents any initiating of a connection from the internet.
@@ -705,7 +703,6 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - The above VPC has an attached virtual private gateway (note: not an internet gateway) and there is a remote network that includes a customer gateway which you must configure to enable the VPN connection. You set up the routing so that any traffic from the VPC bound for your network is routed to the virtual private gateway.
 - **Summary**: VPNs connect your *on-prem with your VPC* over the internet.
 
-
 ### AWS DirectConnect:
 - Direct Connect is an AWS service that establishes a dedicated network connection between your premises and AWS. You can create this private connectivity to reduce network costs, increase bandwidth, and provide more consistent network experience compared to regular internet-based connections.
 - The use case for Direct Connect is high throughput workloads or if you need a stable or reliable connection
@@ -718,7 +715,6 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
   5. Once the VPN connection is available, set up the VPN either on the customer gateway or the on-prem firewall itself
 - Data flow into AWS via DirectConnect looks like the following: On-prem router -> dedicated line -> your own cage / DMZ -> cross connect line -> AWS Direct Connect Router -> AWS backbone -> AWS Cloud
 - **Summary**: DirectConnect connects your *on-prem with your VPC* through a non-public tunnel.
-
 
 ### VPC Endpoints:
 - VPC Endpoints ensure that you can connect your VPC to supported AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect. Traffic between your VPC and other AWS services stay within the Amazon ecosystem and these Endpoints are virtual devices that are HA and without bandwidth constraints. 
@@ -869,6 +865,95 @@ ElasticBeanstalk is another way to script out your provisioning process by deplo
 ElasticBeanstalk applies updates to your application by having a duplicate ready with the already updated version. This duplicate is then swapped with the original. This is done as a preventative measure in case your updated application fails. If the app does fail, ElasticBeanstalk will switch back to the original copy with the older version and there will be no downtime experienced by the users who are using your application. 
 - You can use ElasticBeanstalk to even host Docker as Elastic Beanstalk supports the deployment of web applications from containers. With Docker containers, you can define your own runtime environment, your own platform, programming language, and any application dependencies (such as package managers or tools) that aren't supported by other platforms. ElasticBeanstalk makes it easy to deploy Docker as Docker containers are already self-contained and include all the configuration information and software required to run. 
 
+## Security Groups
+
+### Security Groups Simplified:
+Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
+
+### Security Groups Key Details:
+- Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
+- Every time you make a change to a security group, that change occurs immediately
+- Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
+- Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
+- Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
+- Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
+- Security Groups are regional and can span AZs, but can't be cross-regional.
+- Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
+- You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
+- You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
+- You cannot block specific IP addresses with Security Groups (use NACLs instead)
+- You can increase your Security Group limit by submitting a request to AWS
+
+## Elastic Load Balancers (ELB)
+
+### ELB Simplified:
+Elastic Load Balancing automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, Docker containers, IP addresses, and Lambda functions. It can handle the varying load of your application traffic in a single Availability Zone or across multiple Availability Zones. Elastic Load Balancing offers three types of load balancers that all feature the high availability, automatic scaling, and robust security necessary to make your applications fault tolerant.
+
+### ELB Key Details:
+- Load balancers can be internet facing or application internal.
+- To route domain traffic to an ELB load balancer, use Amazon Route 53 to create an Alias record that points to your load balancer. An Alias record is preferable over a CName, but both can work.
+- ELBs do not have predefined IPv4 addresses; you must resolve them with DNS instead. Your load balancer will never have its own IP by default, but you can create a static IP for a network load balancer because network LBs are for high performance purposes.
+- Instances behind the ELB are reported as `InService` or `OutOfService`.
+When an EC2 instance behind an ELB fails a health check, the ELB stops sending traffic to that instance.
+- A dual stack configuration for a load balancer means load balancing over IPv4 and IPv6
+- In AWS, there are three types of LBs:
+  - Application LBs
+  - Network LBs
+  - Classic LBs.
+- **Application LBs** are best suited for HTTP(S) traffic and they balance load on layer 7 OSI. They are intelligent enough to be application aware and Application Load Balancers also support path-based routing, host-based routing and support for containerized applications. As an example, if you change your web browser’s language into French, an Application LB has visibility of the metadata it receives from your browser which contains details about the language you use. To optimize your browsing experience, it will then route you to the French-language servers on the backend behind the LB. You can also create advanced request routing, moving traffic into specific servers based on rules that you set yourself for specific cases.
+- **Network LBs** are best suited for TCP traffic where performance is required and they balance load on layer 4. They are capable of managing millions of requests per second while maintaining extremely low latency.
+- **Classic LBs** are the legacy ELB product and they balance either on HTTP(S) or TCP, but not both. Even though they are the oldest LBs, they still support features like sticky sessions and X-Forwarded-For headers.
+- If you need flexible application management and TLS termination then you should use the Application Load Balancer. If extreme performance and a static IP is needed for your application then you should use the Network Load Balancer. If your application is built within the EC2 Classic network then you should use the Classic Load Balancer.
+- The lifecycle of a request to view a website behind an ELB:
+  1. The browser requests the IP address for the load balancer from DNS.
+  2. DNS provides the IP.
+  3. With the IP at hand, your browser then makes an HTTP request for an HTML page from the Load Balancer.
+  4. AWS perimeter devices checks and verifies your request before passing it onto the LB.
+  5. The LB finds an active webserver to pass on the HTTP request.
+  6. The webserver returns the requested HTML file.
+  7. The browser receives the HTML file it requested and renders the graphical representation of it on the screen.
+- Load balancers are a regional service. They do not balance load across different regions. You must provision a new ELB in each region that you operate out of.
+- If your application stops responding, you’ll receive a 504 error when hitting your load balancer. This means the application is having issues and the error could have bubbled up to the load balancer from the services behind it. It does not necessarily mean there's a problem with the LB itself.
+
+### ELB Advanced Features:
+- To enable IPv6 DNS resolution, you need to create a second DNS resource record so that the **ALIAS AAAA** record resolves to the load balancer along with the IPv4 record.
+- The X-Forwarded-For header, via the Proxy Protocol, is simply the idea for load balancers to forward the requester's IP address along with the actual request for information from the servers behind the LBs. Normally, the servers behind the LBs only see that the IP sending it traffic belongs to the Load Balancer. They usually have no idea about the true origin of the request as they only know about the computer (the LB) that asks them to do something. But sometimes we may want to route the original IP to the backend servers for specific use cases and have the LB’s IP address ignored. The X-Forwarded-For header makes this possible.
+- Sticky Sessions bind a given user to a specific instance throughout the duration of their stay on the application or website. This means all of their interactions with the application will be directed to the same host each time. If you need local disk for your application to work, sticky sessions are great as users are guaranteed consistent access to the same ephemeral storage on a particular instance. The downside of sticky sessions is that, if done improperly, it can defeat the purpose of load balancing. All traffic could hypothetically be bound to the same instance instead of being evenly distributed.
+- Path Patterns create a listener with rules to forward requests based on the URL path set within those user requests. This method, known as path-based routing, ensures that traffic can be specifically directed to multiple back-end services. 
+For example, with Path Patterns you can route general requests to one target group and requests to render images to another target group. So the URL, “www.example.com/” will be forwarded to a server that is used for general content while “www.example.com/photos” will be forwarded to another server that renders images.
+
+### ELB Cross Zone Load Balancing:
+- Cross Zone load balancing guarantees even distribution across AZs rather than just within a single AZ.
+- If Cross Zone load balancing is disabled, each load balancer node distributes requests evenly across the registered instances in its Availability Zone only. 
+- Cross Zone load balancing reduces the need to maintain equivalent numbers of instances in each enabled Availability Zone, and improves your application's ability to handle the loss of one or more instances.
+- However, it is still recommend that you maintain approximately equivalent numbers of instances in each enabled Availability Zone for higher fault tolerance. 
+- For environments where clients cache DNS lookups, incoming requests might favor one of the Availability Zones. Using Cross Zone load balancing, this imbalance in the request load is spread across all available instances in the region instead.
+
+### ELB Security:
+- ELB supports SSL/TLS & HTTPS termination. Termination at load balancer is desired because decryption is resource and CPU intensive. Putting the decryption burden on the load balancer enables the EC2 instances to spend their processing power on application tasks, which helps improve overall performance.
+-  Elastic Load Balancers (along with CloudFront) support Perfect Forward Secrecy. This is a feature that provides additional safeguards against the eavesdropping of encrypted data in transit through the use of a uniquely random session key. This is done by ensuring that the in-use part of an encryption system automatically and frequently changes the keys it uses to encrypt and decrypt information. So if this latest key is compromised at all, it will only expose a small portion of the user's recent data.
+- Classic Load Balancers do not support Server Name Indication (SNI). SNI allows the server (the LB in this case) to safely host multiple TLS Certificates for multiple sites all under a single IP address (the Alias record or CName record in this case). To allow SNI, you have to use an Application Load Balancer instead or use it with a CloudFront web distribution. 
+
+## Elastic Network Interfaces (ENI)
+
+### ENI Simplified:
+An elastic network interface is a networking component that represents a virtual network card. When you provision a new instance, there will be an ENI attached automatically and you can create and configure additional network interfaces if desired. When you move a network interface from one instance to another, network traffic is redirected to the new instance. 
+
+### ENI Key Details:
+- ENI is used mainly for low-budget, high-availability network solutions
+- However, if you suspect you need high network throughput then you can use Enhanced Networking ENI.
+- Enhanced Networking ENI uses single root I/O virtualization to provide high-performance networking capabilities on supported instance types. SR-IOV provides higher I/O and lower throughput and it ensures higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. SR-IOV does this by dedicating the interface to a single instance and effectively bypassing parts of the Hypervisor which allows for better performance.
+- Adding more ENIs won’t necessarily speed up your network throughput, but Enhanced Networking ENI will.
+- There is no extra charge for using Enhanced Networking ENI and the better network performance it provides. The only downside is that Enhanced Networking ENI is not available on all EC2 instance families and types.
+- You can attach a network interface to an EC2 instance in the following ways:
+  - When it's running (hot attach)
+  - When it's stopped (warm attach)
+  - When the instance is being launched (cold attach).
+- If an EC2 instance fails with ENI properly configured, you (or more likely,the code running on your behalf) can attach the network interface to a hot standby instance. Because ENI interfaces maintain their own private IP addresses, Elastic IP addresses, and MAC address, network traffic will begin to flow to the standby instance as soon as you attach the network interface on the replacement instance. Users will experience a brief loss of connectivity between the time the instance fails and the time that the network interface is attached to the standby instance, but no changes to the VPC route table or your DNS server are required.
+- For instances that work with Machine Learning and High Performance Computing, use EFA (Elastic Fabric Adaptor). EFAs accelerate the work required from the above use cases. EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud-based High Performance Computing systems. 
+- EFA can also use OS-bypass (on linux only) that will enable ML and HPC applications to interface with the Elastic Fabric Adaptor directly, rather than be normally routed to it through the OS. This gives it a huge performance increase.
+- You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface. 
+
 ## Database Services
 
 ## Network Services
@@ -954,45 +1039,6 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
     - You want to provide access to multiple restricted files. For example, all of the files for a video in HLS format or all of the files in the paid users' area of a website.
     - You don't want to change your current URLs.
 
-
-## Elastic Network Interfaces (ENI)
-
-### ENI Simplified:
-An elastic network interface is a networking component that represents a virtual network card. When you provision a new instance, there will be an ENI attached automatically and you can create and configure additional network interfaces if desired. When you move a network interface from one instance to another, network traffic is redirected to the new instance. 
-
-### ENI Key Details:
-- ENI is used mainly for low-budget, high-availability network solutions
-- However, if you suspect you need high network throughput then you can use Enhanced Networking ENI.
-- Enhanced Networking ENI uses single root I/O virtualization to provide high-performance networking capabilities on supported instance types. SR-IOV provides higher I/O and lower throughput and it ensures higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. SR-IOV does this by dedicating the interface to a single instance and effectively bypassing parts of the Hypervisor which allows for better performance.
-- Adding more ENIs won’t necessarily speed up your network throughput, but Enhanced Networking ENI will.
-- There is no extra charge for using Enhanced Networking ENI and the better network performance it provides. The only downside is that Enhanced Networking ENI is not available on all EC2 instance families and types.
-- You can attach a network interface to an EC2 instance in the following ways:
-  - When it's running (hot attach)
-  - When it's stopped (warm attach)
-  - When the instance is being launched (cold attach).
-- If an EC2 instance fails with ENI properly configured, you (or more likely,the code running on your behalf) can attach the network interface to a hot standby instance. Because ENI interfaces maintain their own private IP addresses, Elastic IP addresses, and MAC address, network traffic will begin to flow to the standby instance as soon as you attach the network interface on the replacement instance. Users will experience a brief loss of connectivity between the time the instance fails and the time that the network interface is attached to the standby instance, but no changes to the VPC route table or your DNS server are required.
-- For instances that work with Machine Learning and High Performance Computing, use EFA (Elastic Fabric Adaptor). EFAs accelerate the work required from the above use cases. EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud-based High Performance Computing systems. 
-- EFA can also use OS-bypass (on linux only) that will enable ML and HPC applications to interface with the Elastic Fabric Adaptor directly, rather than be normally routed to it through the OS. This gives it a huge performance increase.
-- You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface. 
-
-## Security Groups
-
-### Security Groups Simplified:
-Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
-
-### Security Groups Key Details:
-- Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
-- Every time you make a change to a security group, that change occurs immediately
-- Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
-- Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
-- Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
-- Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
-- Security Groups are regional and can span AZs, but can't be cross-regional.
-- Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
-- You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
-- You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
-- You cannot block specific IP addresses with Security Groups (use NACLs instead)
-- You can increase your Security Group limit by submitting a request to AWS
 
 ## Web Application Firewall (WAF)
 
@@ -1364,56 +1410,6 @@ Amazon Route 53 is a highly available and scalable Domain Name System (DNS) serv
 - **Geo-proximity Routing** lets you choose where traffic will be sent based on the geographic location of your users *and* your resources. You can choose to route more or less traffic based on a specified weight which is referred to as a bias. This bias either expands or shrinks the availability of a geographic region which makes it easy to shift traffic from resources in one location to resources in another. To use this routing method, you must enable Route53 traffic flow. If you want to control global traffic, use Geo-proximity routing. If you want traffic to stay in a local region, use Geolocation routing.
 - **Multivalue Routing** is pretty much the same as Simple Routing, but Multivalue Routing allows you to put health checks on each record set. This ensures then that only a healthy IP will be randomly returned rather than any IP.
 
-## Elastic Load Balancers (ELB)
-
-### ELB Simplified:
-Elastic Load Balancing automatically distributes incoming application traffic across multiple targets, such as Amazon EC2 instances, Docker containers, IP addresses, and Lambda functions. It can handle the varying load of your application traffic in a single Availability Zone or across multiple Availability Zones. Elastic Load Balancing offers three types of load balancers that all feature the high availability, automatic scaling, and robust security necessary to make your applications fault tolerant.
-
-### ELB Key Details:
-- Load balancers can be internet facing or application internal.
-- To route domain traffic to an ELB load balancer, use Amazon Route 53 to create an Alias record that points to your load balancer. An Alias record is preferable over a CName, but both can work.
-- ELBs do not have predefined IPv4 addresses; you must resolve them with DNS instead. Your load balancer will never have its own IP by default, but you can create a static IP for a network load balancer because network LBs are for high performance purposes.
-- Instances behind the ELB are reported as `InService` or `OutOfService`.
-When an EC2 instance behind an ELB fails a health check, the ELB stops sending traffic to that instance.
-- A dual stack configuration for a load balancer means load balancing over IPv4 and IPv6
-- In AWS, there are three types of LBs:
-  - Application LBs
-  - Network LBs
-  - Classic LBs.
-- **Application LBs** are best suited for HTTP(S) traffic and they balance load on layer 7 OSI. They are intelligent enough to be application aware and Application Load Balancers also support path-based routing, host-based routing and support for containerized applications. As an example, if you change your web browser’s language into French, an Application LB has visibility of the metadata it receives from your browser which contains details about the language you use. To optimize your browsing experience, it will then route you to the French-language servers on the backend behind the LB. You can also create advanced request routing, moving traffic into specific servers based on rules that you set yourself for specific cases.
-- **Network LBs** are best suited for TCP traffic where performance is required and they balance load on layer 4. They are capable of managing millions of requests per second while maintaining extremely low latency.
-- **Classic LBs** are the legacy ELB product and they balance either on HTTP(S) or TCP, but not both. Even though they are the oldest LBs, they still support features like sticky sessions and X-Forwarded-For headers.
-- If you need flexible application management and TLS termination then you should use the Application Load Balancer. If extreme performance and a static IP is needed for your application then you should use the Network Load Balancer. If your application is built within the EC2 Classic network then you should use the Classic Load Balancer.
-- The lifecycle of a request to view a website behind an ELB:
-  1. The browser requests the IP address for the load balancer from DNS.
-  2. DNS provides the IP.
-  3. With the IP at hand, your browser then makes an HTTP request for an HTML page from the Load Balancer.
-  4. AWS perimeter devices checks and verifies your request before passing it onto the LB.
-  5. The LB finds an active webserver to pass on the HTTP request.
-  6. The webserver returns the requested HTML file.
-  7. The browser receives the HTML file it requested and renders the graphical representation of it on the screen.
-- Load balancers are a regional service. They do not balance load across different regions. You must provision a new ELB in each region that you operate out of.
-- If your application stops responding, you’ll receive a 504 error when hitting your load balancer. This means the application is having issues and the error could have bubbled up to the load balancer from the services behind it. It does not necessarily mean there's a problem with the LB itself.
-
-### ELB Advanced Features:
-- To enable IPv6 DNS resolution, you need to create a second DNS resource record so that the **ALIAS AAAA** record resolves to the load balancer along with the IPv4 record.
-- The X-Forwarded-For header, via the Proxy Protocol, is simply the idea for load balancers to forward the requester's IP address along with the actual request for information from the servers behind the LBs. Normally, the servers behind the LBs only see that the IP sending it traffic belongs to the Load Balancer. They usually have no idea about the true origin of the request as they only know about the computer (the LB) that asks them to do something. But sometimes we may want to route the original IP to the backend servers for specific use cases and have the LB’s IP address ignored. The X-Forwarded-For header makes this possible.
-- Sticky Sessions bind a given user to a specific instance throughout the duration of their stay on the application or website. This means all of their interactions with the application will be directed to the same host each time. If you need local disk for your application to work, sticky sessions are great as users are guaranteed consistent access to the same ephemeral storage on a particular instance. The downside of sticky sessions is that, if done improperly, it can defeat the purpose of load balancing. All traffic could hypothetically be bound to the same instance instead of being evenly distributed.
-- Path Patterns create a listener with rules to forward requests based on the URL path set within those user requests. This method, known as path-based routing, ensures that traffic can be specifically directed to multiple back-end services. 
-For example, with Path Patterns you can route general requests to one target group and requests to render images to another target group. So the URL, “www.example.com/” will be forwarded to a server that is used for general content while “www.example.com/photos” will be forwarded to another server that renders images.
-
-
-### ELB Cross Zone Load Balancing:
-- Cross Zone load balancing guarantees even distribution across AZs rather than just within a single AZ.
-- If Cross Zone load balancing is disabled, each load balancer node distributes requests evenly across the registered instances in its Availability Zone only. 
-- Cross Zone load balancing reduces the need to maintain equivalent numbers of instances in each enabled Availability Zone, and improves your application's ability to handle the loss of one or more instances.
-- However, it is still recommend that you maintain approximately equivalent numbers of instances in each enabled Availability Zone for higher fault tolerance. 
-- For environments where clients cache DNS lookups, incoming requests might favor one of the Availability Zones. Using Cross Zone load balancing, this imbalance in the request load is spread across all available instances in the region instead.
-
-### ELB Security:
-- ELB supports SSL/TLS & HTTPS termination. Termination at load balancer is desired because decryption is resource and CPU intensive. Putting the decryption burden on the load balancer enables the EC2 instances to spend their processing power on application tasks, which helps improve overall performance.
--  Elastic Load Balancers (along with CloudFront) support Perfect Forward Secrecy. This is a feature that provides additional safeguards against the eavesdropping of encrypted data in transit through the use of a uniquely random session key. This is done by ensuring that the in-use part of an encryption system automatically and frequently changes the keys it uses to encrypt and decrypt information. So if this latest key is compromised at all, it will only expose a small portion of the user's recent data.
-- Classic Load Balancers do not support Server Name Indication (SNI). SNI allows the server (the LB in this case) to safely host multiple TLS Certificates for multiple sites all under a single IP address (the Alias record or CName record in this case). To allow SNI, you have to use an Application Load Balancer instead or use it with a CloudFront web distribution. 
 
 ## Auto Scaling
 
