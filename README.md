@@ -57,7 +57,7 @@ They are also an excellent learning resource because you are more involved when 
 
 11. <a href="#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
 
-12. <a href="#cloudformation">ElasticBeanstalk</a>
+12. <a href="#elasticbeanstalk">ElasticBeanstalk</a>
 
 13. <a href="#security-groups">Security Groups</a>
 
