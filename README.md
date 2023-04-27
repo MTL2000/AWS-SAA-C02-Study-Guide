@@ -1843,3 +1843,12 @@ The following section includes services, features, and techniques that may appea
   - Retrieve historical configurations of one or more resources. ·     
   - Receive a notification whenever a resource is created, modified, or deleted.     
   - View relationships between resources. For example, you might want to find all resources that use a particular security group.
+
+### AWS Documentation?
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html">AWS Well-Architected Framework</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html">Operational Excellence Pillar</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html">Security Pillar</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html">Reliability Pillar</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/welcome.html">Performance Efficiency Pillar</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html">Cost Optimization Pillar</a> 
+- AWS Well-Architected Framework: <a href="https://docs.aws.amazon.com/wellarchitected/latest/sustainability-pillar/sustainability-pillar.html">Sustainability Pillar</a> 
